@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class HealthBurger extends Burger {
     private int maxToppings;
 
-    public HealthBurger(String name, String meat, String breadType) {
-        super(name, meat, breadType);
+    public HealthBurger(String name) {
+        super(name);
     }
 
     @Override

@@ -5,17 +5,17 @@ import java.util.*;
 public class Burger {
 
     String name;
-    private String meat;
+    String bread;
+    String meat;
     private double price;
-    private String breadType;
     public Scanner scanner = new Scanner(System.in);
 
 
-    public Burger(String name, String meat, String breadType) {
+    public Burger(String name) {
         this.name = name;
-        this.meat = meat;
-        this.breadType = breadType;
         this.price = plainBurgerPrice();
+        this.bread = Bread.chooseBread();
+        this.meat = Meat.chooseMeat();
         callChooseToppings();
     }
 
@@ -91,7 +91,7 @@ public class Burger {
         if(toppings.size() == maxToppings) {
             System.out.println("Maximum number of toppings reached.");
         }
-        System.out.println("Topping choosing process finished with following toppings: " + toppings);
+        System.out.println("Topping choosing process finished with following toppings: " + toppings + " on " + this.bread);
         return toppings;
     }
 

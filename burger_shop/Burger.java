@@ -2,35 +2,30 @@ package burger_shop;
 
 import java.util.*;
 
+//This is my plain hamburger class
 public class Burger {
 
-    String name;
-    String bread;
-    String meat;
-    private double price;
-    public Scanner scanner = new Scanner(System.in);
+    static double price = plainBurgerPrice();
 
 
-    public Burger(String name) {
-        this.name = name;
-        this.price = plainBurgerPrice();
-        this.bread = Bread.chooseBread();
-        this.meat = Meat.chooseMeat();
-        callChooseToppings();
-    }
 
     //This function allows user to select the toppings, which are returned as an Array List.
-    public ArrayList<String> chooseToppings(int maxToppings) {
-        int input;
+    public static ArrayList<String> chooseToppings(int maxToppings) {
+
         ArrayList<String> toppings = new ArrayList<String>();
+        Scanner scanner = new Scanner(System.in);
+        int input;
+
         displayToppingsOptions();
         do {
+
             if(toppings.size() != 0) {
                 System.out.println("Toppings chosen so far: " + toppings);
-                System.out.println("Please enter next topping choice for " + this.name + ": (0 to finish)\n");
+                System.out.println("Please enter next topping choice: (0 to finish)\n");
             } else if(toppings.size() == 0) {
-                System.out.println("Please enter a topping choice for " + this.name + ": (0 to finish)\n");
+                System.out.println("Please enter a topping choice: (0 to finish)\n");
             }
+
             input = scanner.nextInt();
             scanner.nextLine();
             switch(input) {
@@ -56,12 +51,12 @@ public class Burger {
                     break;
                 case 5:
                     toppings.add("Cheese");
-                    totalBurgerPrice(1.00);
+                    calculateBurgerPrice(1.00);
                     System.out.println("One slice of cheese added, new total: " + getPrice() + "\n");
                     break;
                 case 6:
                     toppings.add("Bacon");
-                    totalBurgerPrice(1.50);
+                    calculateBurgerPrice(1.50);
                     System.out.println("One slice of bacon added, new total: " + getPrice() + "\n");
                     break;
                 case 7:
@@ -91,24 +86,24 @@ public class Burger {
         if(toppings.size() == maxToppings) {
             System.out.println("Maximum number of toppings reached.");
         }
-        System.out.println("Topping choosing process finished with following toppings: " + toppings + " on " + this.bread);
+        System.out.println("Topping choosing process finished.");
         return toppings;
     }
 
-    public double plainBurgerPrice() {
+    static double plainBurgerPrice() {
         return 5.99;
     }
 
-    private double totalBurgerPrice(double toppingPrice) {
-        this.price += toppingPrice;
-        return this.price;
-    }
-
-    public double getPrice() {
+    static double calculateBurgerPrice(double additionalCost) {
+        price += additionalCost;
         return price;
     }
 
-    public void displayToppingsOptions() {
+    static double getPrice() {
+        return price;
+    }
+
+    public static void displayToppingsOptions() {
         System.out.println("Select your toppings: Enter 0 when complete\n\n" +
                 "1 - Lettuce\t\t\t" +
                 "2 - Tomato\t\t\t" +
@@ -121,8 +116,8 @@ public class Burger {
                 "9 - Mustard\n");
     }
 
-    public void callChooseToppings() {
-        chooseToppings(2);
+    public ArrayList<String> callChooseToppings() {
+       return chooseToppings(2);
     }
 
 }

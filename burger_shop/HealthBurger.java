@@ -1,32 +1,32 @@
 package burger_shop;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class HealthBurger extends Burger {
-    private int maxToppings;
-
-    public HealthBurger(String name) {
-        super(name);
-    }
 
     @Override
-    public void callChooseToppings() {
-        chooseToppings(4);
+    public ArrayList<String> callChooseToppings() {
+        return chooseToppings(4);
     }
 
-    @Override
-    public ArrayList<String> chooseToppings(int maxToppings) {
-        displayToppingsOptions();
-        int input;
+    public static ArrayList<String> chooseToppings(int maxToppings) {
+
         ArrayList<String> toppings = new ArrayList<String>();
+        Scanner scanner = new Scanner(System.in);
+        int input;
 
+
+        HealthBurger.displayToppingsOptions();
         do {
+
             if(toppings.size() != 0) {
                 System.out.println("Toppings chosen so far: " + toppings);
-                System.out.println("Please enter next topping choice for " + this.name + ": (0 to finish)\n");
+                System.out.println("Please enter next topping choice: (0 to finish)\n");
             } else if(toppings.size() == 0) {
-                System.out.println("Please enter a topping choice for " + this.name + ": (0 to finish)\n");
+                System.out.println("Please enter a topping choice for: (0 to finish)\n");
             }
+
             input = scanner.nextInt();
             scanner.nextLine();
             switch(input) {
@@ -62,12 +62,11 @@ public class HealthBurger extends Burger {
         if(toppings.size() == maxToppings) {
             System.out.println("Maximum number of toppings reached.");
         }
-        System.out.println("Topping choosing process finished with following toppings: " + toppings);
+        System.out.println("Topping choosing process finished.");
         return toppings;
     }
 
-    @Override
-    public void displayToppingsOptions() {
+    public static void displayToppingsOptions() {
         System.out.println("Select your toppings: Enter 0 when complete\n\n" +
                 "1 - Lettuce\t\t" +
                 "2 - Tomato\t\t" +

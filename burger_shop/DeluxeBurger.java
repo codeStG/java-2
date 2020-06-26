@@ -1,15 +1,13 @@
 package burger_shop;
 
+import java.util.ArrayList;
+
 public class DeluxeBurger extends Burger{
     int maxToppings;
 
-    public DeluxeBurger(String name) {
-        super(name);
-    }
-
     @Override
-    public void callChooseToppings() {
-        chooseToppings(6);
+    public ArrayList<String> callChooseToppings() {
+        return chooseToppings(6);
     }
 
 }

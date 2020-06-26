@@ -4,13 +4,19 @@ public class Main {
     public static void main(String[] args) {
         //main execution of the burger shop goes here.  This is the "entry point" of your application
 
-//        Burger burger = new Burger("plain");
-//        burger.callChooseToppings();
-//        System.out.println(burger.getPrice());
-//        System.out.println(burger.plainBurgerPrice());
+//        Burger burger = new Burger();
+//        Meal meal = new Meal(burger);
+//        Order order = new Order(meal);
 //
-//        HealthBurger healthBurger = new HealthBurger("health");
+//        //The addSides method takes the number of sides needed
+//        order.addSides(3);
 
-        DeluxeBurger deluxeBurger = new DeluxeBurger("deluxe");
+//        DeluxeBurger deluxeBurger = new DeluxeBurger();
+
+        DeluxeBurger deluxeBurger = new DeluxeBurger();
+        Order burgerOrder = new Order(deluxeBurger);
+        burgerOrder.addBurger(1, "healthy");
+        burgerOrder.addSides(2);
+        burgerOrder.purchaseOrder();
     }
 }

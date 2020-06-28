@@ -1,5 +1,6 @@
 package burger_shop;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Meat {
@@ -7,13 +8,21 @@ public class Meat {
     public static String chooseMeat() {
         String meat = null;
         displayMeatOptions();
-        int input = 0;
+        int input;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Please select meat type: ");
-        while(input == 0) {
-            input = scanner.nextInt();
-            scanner.nextLine();
+
+        while(meat == null) {
+            System.out.println("Please select meat type: (5 to display options)");
+
+            try {
+                input = scanner.nextInt();
+                scanner.nextLine();
+            } catch(InputMismatchException e) {
+                System.out.println("Invalid type entered. Must enter a number.");
+                break;
+            }
+
             switch (input) {
                 case 1:
                     meat = "Beef";
@@ -30,6 +39,12 @@ public class Meat {
                 case 4:
                     meat = "Turkey";
                     System.out.println("Turkey has been chosen.\n");
+                    break;
+                case 5:
+                    displayMeatOptions();
+                    break;
+                default:
+                    System.out.println("Invalid meat option.");
                     break;
             }
         }

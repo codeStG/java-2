@@ -1,12 +1,12 @@
 package burger_shop;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class DeluxeBurger extends Burger{
     int maxToppings;
 
     @Override
-    public ArrayList<String> callChooseToppings() {
+    public List<String> callChooseToppings() {
         return chooseToppings(6);
     }
 

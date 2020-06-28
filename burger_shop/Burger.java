@@ -1,6 +1,9 @@
 package burger_shop;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
 //This is my plain hamburger class
 public class Burger {
@@ -10,7 +13,7 @@ public class Burger {
 
 
     //This function allows user to select the toppings, which are returned as an Array List.
-    public static ArrayList<String> chooseToppings(int maxToppings) {
+    public static List<String> chooseToppings(int maxToppings) {
 
         ArrayList<String> toppings = new ArrayList<String>();
         Scanner scanner = new Scanner(System.in);
@@ -21,13 +24,19 @@ public class Burger {
 
             if(toppings.size() != 0) {
                 System.out.println("Toppings chosen so far: " + toppings);
-                System.out.println("Please enter next topping choice: (0 to finish)\n");
+                System.out.println("Please enter next topping choice: (0 to finish/10 to display options)\n");
             } else if(toppings.size() == 0) {
-                System.out.println("Please enter a topping choice: (0 to finish)\n");
+                System.out.println("Please enter a topping choice: (0 to finish/10 to display options)\n");
             }
 
-            input = scanner.nextInt();
-            scanner.nextLine();
+            try {
+                input = scanner.nextInt();
+                scanner.nextLine();
+            } catch(InputMismatchException e) {
+                System.out.println("Invalid type entered. Must enter a number.");
+                break;
+            }
+
             switch(input) {
                 case 1:
                     //no additional charge for Lettuce
@@ -74,11 +83,14 @@ public class Burger {
                     toppings.add("Mustard");
                     System.out.println("Mustard has been added as a topping.\n");
                     break;
+                case 10:
+                    displayToppingsOptions();
+                    break;
                 default:
                     if(toppings.size() > 0) {
                         System.out.println("You chose the following toppings: " + toppings);
                     } else if(toppings.size() == 0) {
-                        System.out.println("No toppings were selected.");
+                        System.out.println("Invalid topping selected. Enter 10 to display options.");
                     }
                     break;
             }
@@ -116,7 +128,7 @@ public class Burger {
                 "9 - Mustard\n");
     }
 
-    public ArrayList<String> callChooseToppings() {
+    public List<String> callChooseToppings() {
        return chooseToppings(2);
     }
 

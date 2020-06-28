@@ -1,6 +1,6 @@
 package burger_shop;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Meal {
@@ -8,7 +8,7 @@ public class Meal {
     Burger burger;
     String bread;
     String meat;
-    ArrayList<String> toppings;
+    List<String> toppings;
     double price;
 
 
@@ -42,31 +42,37 @@ public class Meal {
         int input;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Please select desired beverage:\n");
-        input = scanner.nextInt();
-        scanner.nextLine();
-        switch(input) {
-            case 1:
-                drink = "Coke";
-                System.out.println("Coke has been chosen.\n");
-                break;
-            case 2:
-                drink = "Sprite";
-                System.out.println("Sprite has been chosen.\n");
-                break;
-            case 3:
-                drink = "Dr. Pepper";
-                System.out.println("Dr. Pepper has been chosen.\n");
-                break;
-            case 4:
-                drink = "Root Beer";
-                System.out.println("Root Beer has been chosen.\n");
-                break;
-            default:
-                if(drink == null) {
-                    System.out.println("No drink was chosen.");
-                }
-                break;
+
+        while(drink == null) {
+            System.out.println("Please select desired beverage: (5 to display options)\n");
+            input = scanner.nextInt();
+            scanner.nextLine();
+            switch (input) {
+                case 1:
+                    drink = "Coke";
+                    System.out.println("Coke has been chosen.\n");
+                    break;
+                case 2:
+                    drink = "Sprite";
+                    System.out.println("Sprite has been chosen.\n");
+                    break;
+                case 3:
+                    drink = "Dr. Pepper";
+                    System.out.println("Dr. Pepper has been chosen.\n");
+                    break;
+                case 4:
+                    drink = "Root Beer";
+                    System.out.println("Root Beer has been chosen.\n");
+                    break;
+                case 5:
+                    displayDrinkOptions();
+                    break;
+                default:
+                    if (drink == null) {
+                        System.out.println("Invalid drink chosen.");
+                    }
+                    break;
+            }
         }
         return drink;
     }
